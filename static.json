@@ -1,0 +1,11 @@
+{
+    "headers": {
+        "/manifest.json": {
+            "Access-Control-Allow-Origin": "*"
+        }
+    },
+    "root": "build/",
+    "routes": {
+        "/**": "index.html"
+    }
+}
