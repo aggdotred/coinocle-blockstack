@@ -125,7 +125,7 @@ class Blogs extends React.Component {
       <tr>
         <th className="text-center"><strong>Wallet Name</strong></th>
         <th className="text-center"><strong>Coin Type</strong></th>
-        <th className="text-center"><strong>Current Value</strong></th>
+        <th className="text-center"><strong>Total Coins Owned</strong></th>
       </tr>
     </thead>
     <tbody>
@@ -150,7 +150,8 @@ class Blogs extends React.Component {
       <tr>
         <th className="text-center"><strong>Wallet Name</strong></th>
         <th className="text-center"><strong>Coin Type</strong></th>
-        <th className="text-center"><strong>Current Value</strong></th>
+        <th className="text-center"><strong>Total Coins Owned</strong></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -165,6 +166,7 @@ class Blogs extends React.Component {
         <td>
           <span className="emptyTD" />
         </td>
+
       </tr>
         {blogLinks}
       </tbody>

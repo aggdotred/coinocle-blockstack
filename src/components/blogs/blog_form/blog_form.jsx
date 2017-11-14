@@ -167,23 +167,23 @@ class BlogForm extends React.Component {
       <div className="addWallet">
         <h1 className="text-center">Add a wallet & starting balance</h1>
         <div className="text-center">
-        <form id='blog-form'>
+        <form className="addwalletform">
 
-          <div><label id='blog-title-label' className="wallet-input">
+          <label className="wallet-input">
             <h3>Wallet Name</h3>
-
+          </label>
             <input type='text'
-              id='blog-title-input'
               className="wallet-input"
               onChange={ this.handleChange('title') }
               value={ this.state.title }
               placeholder='Title'
               maxLength='50'
             />
-          </label></div>
-          <div><label id='blog-title-label' className="wallet-input">
-            <h3>Total Coins</h3>
 
+          <div>
+          <label id='blog-title-label' className="wallet-input">
+            <h3>Total Coins</h3>
+          </label>
             <input type='number'
               id='blog-title-input'
               className="wallet-input"
@@ -192,7 +192,7 @@ class BlogForm extends React.Component {
               placeholder='Total Coins'
 
             />
-          </label></div>
+          </div>
 
 
           <BlogFormModal

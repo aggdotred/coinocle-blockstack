@@ -23,10 +23,11 @@ export default class BlogFormModal extends React.Component {
 
   render() {
     return !this.state.showBlogFormModal ? <div></div> : (
-      <div id='blog-form-modal' className='modal' onClick={this.closeModal.bind(this)}>
-        <div className='blog-form-modal-content' onClick={this.stopPropagation.bind(this)}>
-          <div><label>Enter the type of coin <br/>
-          <select value={this.props.state.blogIntro} onChange={ this.props.handleChange('blogIntro') }>
+      <div id='blog-form-modal' onClick={this.closeModal.bind(this)}>
+        <div onClick={this.stopPropagation.bind(this)}>
+          <div><label><h3>Enter the type of coin</h3> </label><br/>
+          <select className="wallet-select" value={this.props.state.blogIntro} onChange={ this.props.handleChange('blogIntro') }>
+            <option disabled selected>--select a coin type--</option>
             <option value="Bitcoin">Bitcoin</option>
             <option value="Bitcoin Cash">Bitcoin Cash</option>
             <option value="Ethereum">Ethereum</option>
@@ -38,15 +39,7 @@ export default class BlogFormModal extends React.Component {
           </select>
 
 
-          </label></div>
-
-          <div><label>Add some tags to your blog (limited to 5)
-            <TagForm
-              blogId={ this.state.id }
-              blogTags={ this.state.tags }
-              setTags={ this.props.setTags }
-            />
-          </label></div>
+          </div>
 
           <SubmitBlogButton
             handleSubmit={ this.props.handleSubmit }

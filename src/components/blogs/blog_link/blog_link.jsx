@@ -27,11 +27,12 @@ axios
 
     const bitcoin = blog.coins;
     const totalValue = this.bit * blog.coins;
+    console.log(blog.id);
 
     return !currentUser ? <div></div> : (
       <tr>
       <td id='blog-link-title'>
-        { blog.title }
+        <Link to={"/blogs/show/"+ blog.id}>{ blog.title }</Link>
       </td>
       <td id='blog-link-body-intro'>
         {/* blog.body is not a string anymore, but an object so it won't display */}

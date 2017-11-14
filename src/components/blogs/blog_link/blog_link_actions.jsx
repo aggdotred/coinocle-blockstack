@@ -63,9 +63,6 @@ class BlogLinkActions extends React.Component {
     // If it isn't the current user's blogs, don't render the blog link actions
     return (
       <div id='blog-link-actions' className='flex-between align-center'>
-        <button id='blog-link-action' className='btn margin-top-4' onClick={ this.redirectToEdit }>
-          <EditSVG id='blog-link-svg' className='transition-2s-ease-in' size={24}/>
-        </button>
 
         <button id='blog-link-action' className='btn' onClick={ this.handleDelete }>
           <TrashSVG id='blog-link-svg' className='transition-2s-ease-in' size={24}/>

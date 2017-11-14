@@ -324,6 +324,11 @@ nav {
   color: #ACACAB;
 }
 
+.wallet-table {
+  max-width: 85%;
+  margin: auto;
+}
+
 /*Table design*/
 
 /*table, th, tr, td {
@@ -614,7 +619,7 @@ a.plus-sign, a.plus-sign:hover {
 }
 
 .wallet-select {
-  max-width: 80%;
+  width: 80%;
   margin: auto;
 }
 
@@ -681,6 +686,7 @@ a.plus-sign, a.plus-sign:hover {
 
 .table thead tr {
   border-bottom: 1px solid #e1e1e1;
+  border-top: 1px solid #e1e1e1;
 }
 
 .addwalletform input  				{
