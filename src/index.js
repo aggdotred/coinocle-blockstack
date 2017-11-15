@@ -1,34 +1,30 @@
-import React from 'react';
+// import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from './components/Root';
-// import registerServiceWorker from './util/registerServiceWorker';
-import configureStore from './store/store';
-import {
-  isSignInPending,
-  isUserSignedIn,
-  loadUserData,
-  handlePendingSignIn
-} from 'blockstack';
+// import App from './App';
+// import registerServiceWorker from './registerServiceWorker';
+//
+// ReactDOM.render(<App />, document.getElementById('root'));
+// registerServiceWorker();
 
-import { createSessionOrUser } from './util/user_api_util';
-require('./env.js');
 
-const cloudinary = window.cloudinary; // eslint-disable-line
-global.cloudinary = cloudinary;
 
-document.addEventListener('DOMContentLoaded', event => {
-  let store = configureStore();
+import React from 'react'
+// import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { ConnectedRouter } from 'react-router-redux'
+import store, { history } from './store'
+import App from './containers/App'
 
-  if (isUserSignedIn()) {
-    createSessionOrUser(loadUserData(), store.dispatch);
-  } else if (isSignInPending()) {
-    handlePendingSignIn().then(userData => {
-      window.location = window.location.origin;
-    });
-  }
+const target = document.querySelector('#root')
 
-  ReactDOM.render(<Root store={store}/>, document.getElementById('root'));
-  // registerServiceWorker();
+ReactDOM.render(
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <div>
+          <App />
+        </div>
+      </ConnectedRouter>
+    </Provider>,
+    target
+)
 
-  global.store = store;
-});
