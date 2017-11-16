@@ -21,6 +21,7 @@ import {loadCoinList} from '../modules/coin';
 import {buttons} from '../modules/message';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import Chart from "./Chart";
 import logo from "./logoWhite.png";
 
 
@@ -71,7 +72,7 @@ class App extends React.Component {
         <div className="App">
           <Navbar color="faded">
             <Container>
-              <NavbarBrand ><img src={logo} alt="Coinocle logo" /></NavbarBrand>
+              <NavbarBrand ><Link to={"/"}><img src={logo} alt="Coinocle logo" /></Link></NavbarBrand>
                 <ul className="nav navbar-nav navbar-right">
                   <li className="dropdown">
                     <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{image} <span className="caret"></span></a>
@@ -86,10 +87,11 @@ class App extends React.Component {
 
           </Navbar>
           <main>
-            <Route exact path="/" component={HomePage}/>
+            <Route exact path="/" component={Wallets}/>
             <Route path="/coin/:coin" component={CoinPage}/>
             <Route exact path="/wallets" component={Wallets}/>
             <Route exact path="/wallet/new" component={NewWallet}/>
+            <Route exact path="/chart" component={Chart}/>
           </main>
         </div>
     )

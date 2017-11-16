@@ -1,12 +1,12 @@
 import React from 'react';
 import {TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, Button} from 'reactstrap';
 import classnames from 'classnames';
-import CoinList from './CoinList';
+import CoinListTwo from './CoinListTwo';
 import NewsList from './NewsList';
 import Loading from './Loading';
 import {message, tabs} from '../modules/message';
 
-export default class Tabs extends React.Component {
+export default class TabsTwo extends React.Component {
   constructor(props) {
     super(props);
 
@@ -44,7 +44,7 @@ export default class Tabs extends React.Component {
 
 
     const holdingContent = this.props.holdingsList.length > 0 ? (
-            <CoinList
+            <CoinListTwo
                 holdings={this.props.holdings}
                 currency={this.props.currency}
                 list={this.props.holdingsList}
@@ -53,44 +53,13 @@ export default class Tabs extends React.Component {
         <Loading />
     return (
         <div className="container">
-          <Nav tabs className="nav-pills">
-            <NavItem>
-              {/* Coins/Cryptoassets Tab */}
-              <NavLink
-                  className={classnames({ active: this.state.activeTab === '1' })}
-                  onClick={() => {
-                    this.toggle('1');
-                  }}
-              >
-                {tabs.cryptoAssets}
-              </NavLink>
-            </NavItem>
-            
-          </Nav>
+        <h3>Select Coin</h3>
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId="1">
-              <Row>
-                <Col sm="12">
-                  <CoinList
+                  <CoinListTwo
                       holdings={this.props.holdings}
                       currency={this.props.currency}
                       list={this.props.list}/>
-                </Col>
-              </Row>
-            </TabPane>
-            <TabPane tabId="2">
-              <Row>
-                <Col sm="12">
-                  {holdingContent}
-                </Col>
-              </Row>
-            </TabPane>
-            <TabPane tabId="3">
-              <Row>
-                <Col sm="12">
-                  {newsList}
-                </Col>
-              </Row>
             </TabPane>
           </TabContent>
         </div>

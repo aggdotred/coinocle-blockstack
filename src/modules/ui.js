@@ -1,7 +1,10 @@
 export const INPUT_VALUE_CHANGE = 'ui/INPUT_VALUE_CHANGE'
 
 const initialState = {
-  holdingInput: 0
+  holdingInput: {
+    walletName: "",
+    coins: 0
+  }
 };
 
 export default (state = initialState, action) => {

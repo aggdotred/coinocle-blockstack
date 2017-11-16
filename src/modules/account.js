@@ -9,7 +9,9 @@ export const STORAGE_FILE = 'portfo.json'
 
 const initialState = {
   user: null,
-  holdings: {},
+  holdings: {
+    
+  },
   holdingsList: [],
   portfolioValue: 0
 }
@@ -99,6 +101,10 @@ export const holdingsList = (state) => {
   // Return the list of coins which are holdings
   const holdings = state.account.holdings || {};
   return state.coin.list.filter((coin) => !!holdings[coin.id] && numeral(holdings[coin.id]).value() > 0);
+}
+
+export const wallets = (state) => {
+  const wallets = state.account.wallets;
 }
 
 export const portfolioValue = (state) => {

@@ -1,5 +1,5 @@
 export const message = {
-	appname: 'Blockshare.io',
+	appname: 'Coinocle',
 	about: 'About',
 	signInButton: 'Sign In with Blockstack',
 	changeHours24: 'Change in the last 24 hours.',
@@ -53,7 +53,7 @@ export const orderBook = {
 
 export const about = {
 	about: 'About',
-	aboutSection: 'Blockshare.io is a cryptocurrency and asset tracker on top of',
+	aboutSection: 'Coincole is a crypto wallet tracker',
 	blockstack: 'Blockstack',
 	platform: 'platform'
 };

@@ -11,7 +11,8 @@ import {updateHoldingInput} from '../modules/ui';
 import numeral from 'numeral';
 import CoinPageTabs from '../components/CoinPageTabs';
 import {formatMoney} from '../utils';
-class CoinPage extends React.Component {
+
+class Chart extends React.Component {
   static PropTypes = {}
 
   componentDidMount() {
@@ -141,4 +142,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(CoinPage)
+)(Chart)

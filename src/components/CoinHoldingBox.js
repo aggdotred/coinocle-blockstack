@@ -41,6 +41,7 @@ export default class CoinHoldingBox extends React.Component {
 
   render() {
     const coin = this.props.coin;
+    console.log(coin);
     const signinElem = (
         <div>
           <a onClick={this.props.signin} href="#">Sign in to change</a>

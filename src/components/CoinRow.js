@@ -43,6 +43,7 @@ export default class CoinRow extends React.Component {
             <strong>{holdingElem}</strong><br/>
             {valueElem}<br/>
             <span className={changeColor}>{change_24h}</span>
+            <span>{holdings}</span>
           </td>
 
         </tr>

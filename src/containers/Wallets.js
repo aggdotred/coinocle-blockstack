@@ -77,13 +77,13 @@ class Wallets extends React.Component {
       default:
        return (
          <Container>
-         <div className="main-content">
+         <div>
 
           <div className="container text-center">
             <h2>Dashboard</h2>
             <h4>Total Current Value</h4>
             <div>
-              <Link to="/dashboard">
+              <Link to="/chart">
                 <div>{header}</div>
               </Link>
               <div>{currencyChangeEl}</div>

@@ -1,15 +1,14 @@
 import React from 'react';
 import {Row, Col, Container, Button} from 'reactstrap';
-import Tabs from '../components/Tabs';
+import TabsTwo from '../components/TabsTwo';
 import CurrencySelector from '../components/CurrencySelector';
 import CurrencySearch from '../components/CryptoCurrencySearch'; // Import Currency Search Bar for easier access.
 import {bindActionCreators} from 'redux';
-import {Table} from 'reactstrap';
-import WalletRow from '../components/WalletRow';
-import {tableMessage} from '../modules/message';
 import {connect} from 'react-redux';
 import {changeCurrency, loadCoinList} from '../modules/coin';
+import axios from "axios";
 import {
+  wallets,
   holdingsList,
   portfolioValue,
   porfolioValueChange,
@@ -26,7 +25,6 @@ import {message,
 class NewWallet extends React.Component {
   static PropTypes = {}
 
-
   signin() {
     const blockstack = window.blockstack
     blockstack.redirectToSignIn()
@@ -38,28 +36,6 @@ class NewWallet extends React.Component {
   }
 
   renderContent() {
-
-    const { coin, currency, holdings }= this.props;
-
-    const currLow = currency.toLowerCase();
-    const price = coin[`price_${currLow}`];
-    const formatted_price = formatMoney(currency, price);
-    const marketCap = formatMoney(currency, coin[`market_cap_${currLow}`], '0.0a');
-
-
-    const changeColor = +coin.percent_change_24h > 0 ? "text-success" : "text-danger";
-    const coinPerc = +coin.percent_change_24h > 0 ? "+" + coin.percent_change_24h : coin.percent_change_24h;
-
-    const holdingElem = holdings && holdings > 0 ? (<span>{holdings} {coin.symbol}</span>) : (
-            <span>-</span>);
-    const icon = (
-        <img src={`https://files.coinmarketcap.com/static/img/coins/32x32/${coin.id}.png`}/>)
-
-    const rows = this.props.list.map((row) => <WalletRow
-        currency={this.props.currency}
-        key={row.id}
-        coin={row}/>);
-
     const signInButton = (
         <a className="social-button" id="blockstack-connect" onClick={this.signin}>{buttons.signInButton}</a>
     )
@@ -101,20 +77,14 @@ class NewWallet extends React.Component {
       default:
        return (
          <Container>
-            <h2>Add a new Wallet</h2>
-            <h3>Select Currency</h3>
-            <Table className="table table-bordered table-striped table-hover">
-              <thead>
-              <tr>
-                <th></th>
-                <th>{tableMessage.asset}</th>
-              </tr>
-              </thead>
-              <tbody>
-              <td>{icon}</td>
-              <td><Link to={`/coin/${coin.id}`}><h4>{coin.symbol}</h4></Link></td>
-              </tbody>
-            </Table>
+            <TabsTwo
+                user={this.props.user}
+                currency={this.props.currency}
+                list={this.props.list}
+                holdingsList={this.props.holdingsList}
+                holdings={this.props.holdings}
+                signin={this.signin}
+            />
           </Container>
       );
     }

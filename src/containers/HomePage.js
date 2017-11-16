@@ -6,7 +6,9 @@ import CurrencySearch from '../components/CryptoCurrencySearch'; // Import Curre
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {changeCurrency, loadCoinList} from '../modules/coin';
+import axios from "axios";
 import {
+  wallets,
   holdingsList,
   portfolioValue,
   porfolioValueChange,
@@ -22,7 +24,6 @@ import {message,
 
 class HomePage extends React.Component {
   static PropTypes = {}
-
 
   signin() {
     const blockstack = window.blockstack

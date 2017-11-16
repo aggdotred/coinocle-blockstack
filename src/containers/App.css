@@ -258,6 +258,10 @@ table {
   border-radius: 10px;
 }*/
 
+.coin-link {
+  color: #000;
+}
+
 .addAWallet {
   text-decoration: underline;
 }
