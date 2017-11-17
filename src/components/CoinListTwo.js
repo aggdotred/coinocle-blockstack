@@ -16,7 +16,7 @@ export default class CoinListTwo extends React.Component {
         coin={row}/>);
 
     return (
-      <Container>
+      <Container className="coin-grid">
         {rows}
       </Container>
     );

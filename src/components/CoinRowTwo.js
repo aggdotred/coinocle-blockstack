@@ -27,11 +27,14 @@ export default class CoinRowTwo extends React.Component {
             <span>{formatMoney(currency, value_in_currency)}</span>) : null;
 
     return (
-      <Link to={`/coin/${coin.id}`}>
+      <Link to={`/add/${coin.id}`}>
         <div className="col-md-2 card" value={coin.id}>
-          <span>{icon}</span>{coin.symbol}
+        <div className="new-coin">
+          <div>{icon}</div>
+          <div>{coin.symbol}</div>
           <div>{coin.id.charAt(0).toUpperCase() + coin.id.slice(1)}</div>
           <div>${price}</div>
+        </div>
         </div>
       </Link>
     )

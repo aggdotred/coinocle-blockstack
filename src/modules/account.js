@@ -5,12 +5,13 @@ export const SIGNOUT = 'account/SIGNOUT';
 export const LOAD_HOLDINGS = 'account/LOAD_HOLDINGS';
 export const UPDATE_HOLDING = 'account/UPDATE_HOLDING'
 
-export const STORAGE_FILE = 'portfo.json'
+export const STORAGE_FILE = 'coins.json'
+export const TRANSACTION_FILE = 'transactions.json'
 
 const initialState = {
   user: null,
   holdings: {
-    
+
   },
   holdingsList: [],
   portfolioValue: 0

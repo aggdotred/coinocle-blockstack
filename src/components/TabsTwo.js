@@ -53,15 +53,13 @@ export default class TabsTwo extends React.Component {
         <Loading />
     return (
         <div className="container">
-        <h3>Select Coin</h3>
-          <TabContent activeTab={this.state.activeTab}>
-            <TabPane tabId="1">
-                  <CoinListTwo
-                      holdings={this.props.holdings}
-                      currency={this.props.currency}
-                      list={this.props.list}/>
-            </TabPane>
-          </TabContent>
+        <h3>Add a New Holding</h3>
+        <h4>Select a Coin</h4>
+          <CoinListTwo
+              holdings={this.props.holdings}
+              currency={this.props.currency}
+              list={this.props.list}
+          />
         </div>
     );
   }

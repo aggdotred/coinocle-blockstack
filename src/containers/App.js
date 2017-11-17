@@ -22,6 +22,7 @@ import {buttons} from '../modules/message';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Chart from "./Chart";
+import AddCoin from "./AddCoin";
 import logo from "./logoWhite.png";
 
 
@@ -88,6 +89,7 @@ class App extends React.Component {
           </Navbar>
           <main>
             <Route exact path="/" component={Wallets}/>
+            <Route path="/add/:coin" component={AddCoin}/>
             <Route path="/coin/:coin" component={CoinPage}/>
             <Route exact path="/wallets" component={Wallets}/>
             <Route exact path="/wallet/new" component={NewWallet}/>
