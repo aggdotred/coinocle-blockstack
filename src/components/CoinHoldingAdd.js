@@ -4,7 +4,7 @@ import {coinPageInfo} from '../modules/message';
 import {Link} from 'react-router-dom';
 import {Form, FormGroup, Input, InputGroup, InputGroupAddon} from 'reactstrap';
 
-export default class CoinHoldingEdit extends React.Component {
+export default class CoinHoldingAdd extends React.Component {
   static PropTypes = {}
 
   constructor(props) {
@@ -58,29 +58,25 @@ export default class CoinHoldingEdit extends React.Component {
 
     const editElem = (
         <div>
-          <h3>{this.props.value}<br />
-          <small>Total {coin.name} Owned</small></h3>
-          <h2></h2>
-          <h3>Enter new total number of {coin.name} owned</h3>
           <Form className="addwalletform" onSubmit={() => {this.save(this.props.holdingInput)}}>
 
-
+              <FormGroup>
                 <InputGroup className="wallet-input">
                   <Input value={this.props.holdingInput}
                          onChange={(e) => this.props.updateHoldingInput(e.target.value)}
                          name="holdings" id="holdings"
                          className="wallet-input"
                          type="number"
-                         placeholder="Update Coins Owned"/>
+                         placeholder="Coins owned"/>
                 </InputGroup>
-
-                <div className="button-group">
-                  <Link to={"/"}><button className="wallet-save" onClick={() => this.save(this.props.holdingInput)}>Save</button></Link>
-                  <Link to={"/"}><button className="cancel">Cancel</button></Link>
-                </div>
+              </FormGroup>
+              <small className="text-muted">{coinPageInfo.holdings}</small>
 
           </Form>
-
+          <div>
+            <Link to={"/"}><button className="wallet-save" onClick={() => this.save(this.props.holdingInput)}>Save</button></Link>
+            <Link to={"/wallet/new"}><button className="cancel">Cancel</button></Link>
+          </div>
         </div>
     );
 

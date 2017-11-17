@@ -62,7 +62,7 @@ class PriceChart extends React.Component {
       xAccessor(first(data)),
       xAccessor(last(data))
     ];
-
+    console.log(data);
     const periods = [[300, '5m'], [900, '15m'], [1800, '30m'], [7200, '2h'], [14400, '4h'], [86400, '1d']];
     const periodLinks = periods.map((p) => {
       return p[0] === this.state.period ? (
@@ -102,18 +102,11 @@ class PriceChart extends React.Component {
             <CrossHairCursor />
 
           </ChartCanvas>
+
         </div>
     );
   }
 }
-
-
-// PriceChart.propTypes = {
-//   data: PropTypes.array.isRequired,
-//   width: PropTypes.number.isRequired,
-//   ratio: PropTypes.number.isRequired,
-//   type: PropTypes.oneOf(["svg", "hybrid"]).isRequired,
-// };
 
 PriceChart.defaultProps = {
   type: "svg",

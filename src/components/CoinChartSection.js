@@ -6,7 +6,7 @@ import OrderBook from './OrderBook';
 import OrderBookTable from './OrderBookTable'
 import {orderBook} from '../modules/message';
 
-export default class CoinPageTabs extends React.Component {
+export default class CoinChartSection extends React.Component {
   constructor(props) {
     super(props)
     this.toggle = this.toggle.bind(this);

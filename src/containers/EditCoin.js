@@ -3,7 +3,7 @@ import {Row, Col, Container} from 'reactstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import CoinHoldingAdd from '../components/CoinHoldingAdd';
+import CoinHoldingEdit from '../components/CoinHoldingEdit';
 import {updateHoldings} from '../modules/account';
 import {coinPage, hourlyChanges} from '../modules/message';
 import {loadCoin, loadCoinChartData, clearChart, loadOrderBook} from '../modules/coin';
@@ -11,7 +11,7 @@ import {updateHoldingInput} from '../modules/ui';
 import numeral from 'numeral';
 import {formatMoney} from '../utils';
 
-class AddCoin extends React.Component {
+class EditCoin extends React.Component {
   static PropTypes = {}
 
   componentDidMount() {
@@ -37,17 +37,15 @@ class AddCoin extends React.Component {
     const change_1h = numeral(coin['percent_change_1h']).value();
     const change_24h = numeral(coin['percent_change_24h']).value();
     const change_7d = numeral(coin['percent_change_7d']).value();
+    const holdingElem = holdings && holdings > 0 ? (<span>{holdings} {coin.symbol}</span>) : (
+              <span>-</span>);
 
     return (
       <div className="addcoin">
-        <h2 className="text-center">{coin.name}</h2>
-        <h3>{coin.symbol}</h3>
         <h2>{formatMoney(currency, value_in_currency)}
-          <small className="text-center"><br/>Your Current Holdings</small>
+          <small className="text-center"><br/>Your Current {coin.name} Value</small>
         </h2>
-
-        <h3>Enter total {coin.name} owned</h3>
-        <CoinHoldingAdd
+        <CoinHoldingEdit
             coin={coin}
             value={amount}
             holdingInput={this.props.holdingInput}
@@ -84,4 +82,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(AddCoin)
+)(EditCoin)

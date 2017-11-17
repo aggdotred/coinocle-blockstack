@@ -9,7 +9,7 @@ import {coinPage, hourlyChanges} from '../modules/message';
 import {loadCoin, loadCoinChartData, clearChart, loadOrderBook} from '../modules/coin';
 import {updateHoldingInput} from '../modules/ui';
 import numeral from 'numeral';
-import CoinPageTabs from '../components/CoinPageTabs';
+import CoinChartSection from '../components/CoinChartSection';
 import {formatMoney} from '../utils';
 
 class Chart extends React.Component {
@@ -103,7 +103,7 @@ class Chart extends React.Component {
           </Row>
           <Row>
             <Col>
-              <CoinPageTabs
+              <CoinChartSection
                   coinChartData={this.props.coinChartData}
                   coin={this.props.coin}
                   loadCoinChartData={this.props.loadCoinChartData}

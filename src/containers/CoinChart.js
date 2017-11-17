@@ -9,9 +9,9 @@ import {coinPage, hourlyChanges} from '../modules/message';
 import {loadCoin, loadCoinChartData, clearChart, loadOrderBook} from '../modules/coin';
 import {updateHoldingInput} from '../modules/ui';
 import numeral from 'numeral';
-import CoinPageTabs from '../components/CoinPageTabs';
+import CoinChartSection from '../components/CoinChartSection';
 import {formatMoney} from '../utils';
-class CoinPage extends React.Component {
+class CoinChart extends React.Component {
   static PropTypes = {}
 
   componentDidMount() {
@@ -102,7 +102,7 @@ class CoinPage extends React.Component {
           </Row>
           <Row>
             <Col>
-              <CoinPageTabs
+              <CoinChartSection
                   coinChartData={this.props.coinChartData}
                   coin={this.props.coin}
                   loadCoinChartData={this.props.loadCoinChartData}
@@ -141,4 +141,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(CoinPage)
+)(CoinChart)

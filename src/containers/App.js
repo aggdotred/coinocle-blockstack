@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, Link, withRouter} from 'react-router-dom';
 import Wallets from './Wallets';
 import HomePage from './HomePage';
-import CoinPage from './CoinPage';
+import CoinChart from './CoinChart';
 import NewWallet from "./NewWallet";
 import './App.css';
 import {
@@ -23,6 +23,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Chart from "./Chart";
 import AddCoin from "./AddCoin";
+import EditCoin from "./EditCoin";
 import logo from "./logoWhite.png";
 
 
@@ -90,7 +91,8 @@ class App extends React.Component {
           <main>
             <Route exact path="/" component={Wallets}/>
             <Route path="/add/:coin" component={AddCoin}/>
-            <Route path="/coin/:coin" component={CoinPage}/>
+            <Route path="/edit/:coin" component={EditCoin}/>
+            <Route path="/chart/:coin" component={CoinChart}/>
             <Route exact path="/wallets" component={Wallets}/>
             <Route exact path="/wallet/new" component={NewWallet}/>
             <Route exact path="/chart" component={Chart}/>

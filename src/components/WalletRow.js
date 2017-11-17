@@ -34,12 +34,12 @@ export default class WalletRow extends React.Component {
 
     return (
         <tr>
-          <td><Link className="coin-link" to={`/coin/${coin.id}`}>{coin.id.charAt(0).toUpperCase() + coin.id.slice(1)}<span className="glyphicon glyphicon-stats"></span></Link></td>
+          <td><Link className="coin-link" to={`/chart/${coin.id}`}>{coin.id.charAt(0).toUpperCase() + coin.id.slice(1)}<span className="glyphicon glyphicon-stats"></span></Link></td>
           <td>
             {valueElem}
           </td>
           <td>
-            <Link to={`/coin/${coin.id}`}><span className="glyphicon glyphicon-edit"></span></Link>
+            <Link to={`/edit/${coin.id}`}><span className="glyphicon glyphicon-edit"></span></Link>
           </td>
         </tr>
     )
