@@ -21,7 +21,7 @@ import {message,
         buttons
 } from '../modules/message';
 
-class Wallets extends React.Component {
+class Portfolio extends React.Component {
   static PropTypes = {}
 
 
@@ -58,7 +58,6 @@ class Wallets extends React.Component {
         </h4>
     ): null;
     const header = !!this.props.user ? currencyValue : signInButton
-
     switch(!!this.props.user) {
       case null:
       return;
@@ -130,4 +129,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Wallets)
+)(Portfolio)

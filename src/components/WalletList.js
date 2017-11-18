@@ -6,6 +6,7 @@ import {tableMessage} from '../modules/message';
 import AddWalletButton from "./AddWalletButton";
 import { Link } from "react-router-dom";
 
+
 export default class WalletList extends React.Component {
   render() {
     const holdings = this.props.holdings || {};
@@ -29,7 +30,7 @@ export default class WalletList extends React.Component {
           </thead>
           <tbody>
           <tr>
-            <td><Link to={"/wallet/new"} className="addAWallet">
+            <td><Link to={"/coin/new"} className="addAWallet">
                 Add a new coin
               </Link></td>
             <td className="empty-state">$0.00</td>

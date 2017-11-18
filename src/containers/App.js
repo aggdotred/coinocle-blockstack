@@ -1,9 +1,9 @@
 import React from 'react';
 import {Route, Link, withRouter} from 'react-router-dom';
-import Wallets from './Wallets';
+import Portfolio from './Portfolio';
 import HomePage from './HomePage';
 import CoinChart from './CoinChart';
-import NewWallet from "./NewWallet";
+import NewCoin from "./NewCoin";
 import './App.css';
 import {
   Collapse,
@@ -89,12 +89,11 @@ class App extends React.Component {
 
           </Navbar>
           <main>
-            <Route exact path="/" component={Wallets}/>
+            <Route exact path="/" component={Portfolio}/>
             <Route path="/add/:coin" component={AddCoin}/>
             <Route path="/edit/:coin" component={EditCoin}/>
             <Route path="/chart/:coin" component={CoinChart}/>
-            <Route exact path="/wallets" component={Wallets}/>
-            <Route exact path="/wallet/new" component={NewWallet}/>
+            <Route exact path="/coin/new" component={NewCoin}/>
             <Route exact path="/chart" component={Chart}/>
           </main>
         </div>

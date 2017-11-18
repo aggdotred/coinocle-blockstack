@@ -25,7 +25,7 @@ export default class CoinRowTwo extends React.Component {
     const value_in_currency = !!holdings && holdings > 0 ? holdings * price : 0;
     const valueElem = value_in_currency > 0 ? (
             <span>{formatMoney(currency, value_in_currency)}</span>) : null;
-
+    console.log(coin.id);
     return (
       <Link to={`/add/${coin.id}`}>
         <div className="col-md-2 card" value={coin.id}>

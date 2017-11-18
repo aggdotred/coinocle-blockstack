@@ -22,7 +22,7 @@ import {message,
         buttons
 } from '../modules/message';
 
-class NewWallet extends React.Component {
+class NewCoin extends React.Component {
   static PropTypes = {}
 
   signin() {
@@ -120,4 +120,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(NewWallet)
+)(NewCoin)

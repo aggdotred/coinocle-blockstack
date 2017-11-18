@@ -9,7 +9,7 @@ class AddWalletButton extends Component {
   render() {
     return (
       <div className="addTransactionButton">
-        <Link to={"/wallet/new"} type="button" className="text-center plus-sign">
+        <Link to={"/coin/new"} type="button" className="text-center plus-sign">
           +
         </Link>
       </div>
