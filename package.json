@@ -120,5 +120,16 @@
   },
   "devDependencies": {
     "gh-pages": "^1.0.0"
+  },
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hevyw8/coinocle-blockstack.git"
+  },
+  "author": "coinocle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hevyw8/coinocle-blockstack/issues"
   }
 }
