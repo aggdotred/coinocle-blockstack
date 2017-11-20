@@ -3,18 +3,20 @@ import numeral from 'numeral';
 export const SIGNIN_SUCCESS = 'account/SIGNIN_SUCCESS';
 export const SIGNOUT = 'account/SIGNOUT';
 export const LOAD_HOLDINGS = 'account/LOAD_HOLDINGS';
-export const UPDATE_HOLDING = 'account/UPDATE_HOLDING'
+export const UPDATE_HOLDING = 'account/UPDATE_HOLDING';
+export const LOAD_TRANSACTIONS = 'account/LOAD_TRANSACTIONS';
+export const UPDATE_TRANSACTIONS = 'account/UPDATE_TRANSACTIONS';
 
 export const STORAGE_FILE = 'coins.json'
 export const TRANSACTION_FILE = 'transactions.json'
 
 const initialState = {
   user: null,
-  holdings: {
-
-  },
+  holdings: {},
   holdingsList: [],
-  portfolioValue: 0
+  portfolioValue: 0,
+  transactions: {},
+  transactionsList: []
 }
 
 export default (state = initialState, action) => {
@@ -38,6 +40,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         holdings: action.holdings,
+      }
+    case LOAD_TRANSACTIONS:
+      return {
+        ...state,
+        holdings: action.transactions,
+      }
+    case UPDATE_TRANSACTIONS:
+      return {
+        ...state,
+        holdings: action.transactions,
       }
     default:
       return state
@@ -78,19 +90,52 @@ export const loadHoldings = () => {
   }
 };
 
+export const loadTransactions = () => {
+  return (dispatch, getState) => {
+    const blockstack = window.blockstack;
+    blockstack.getFile(TRANSACTION_FILE).then((transactions) => {
+      const data = JSON.parse(transactions || '{}');
+      dispatch({
+        type: LOAD_TRANSACTIONS,
+        transactions: data,
+      })
+    })
+
+  }
+};
+
 
 export const updateHoldings = (coin, amount) => {
+
   return (dispatch, getState) => {
     const blockstack = window.blockstack;
     // Load holdings, update and replace all of it with the new map
     blockstack.getFile(STORAGE_FILE).then((holdings) => {
       const data = JSON.parse(holdings || '{}');
       data[coin] = amount;
-      blockstack.putFile(STORAGE_FILE, JSON.stringify(data))
+      blockstack.putFile(STORAGE_FILE, JSON.stringify(data));
 
       dispatch({
         type: UPDATE_HOLDING,
         holdings: data,
+      })
+
+    });
+  }
+};
+
+export const updateTransactions = (date, amount) => {
+  return (dispatch, getState) => {
+    const blockstack = window.blockstack;
+    // Load transactions, update and replace all of it with the new map
+    blockstack.getFile(TRANSACTION_FILE).then((transactions) => {
+      const data = JSON.parse(transactions || '{}');
+      data[date] = amount;
+      blockstack.putFile(STORAGE_FILE, JSON.stringify(data))
+
+      dispatch({
+        type: UPDATE_TRANSACTIONS,
+        transactions: data,
       })
 
     });
@@ -104,8 +149,10 @@ export const holdingsList = (state) => {
   return state.coin.list.filter((coin) => !!holdings[coin.id] && numeral(holdings[coin.id]).value() > 0);
 }
 
-export const wallets = (state) => {
-  const wallets = state.account.wallets;
+export const transactionsList = (state) => {
+  // Return the list of coins which are holdings
+  const transactions = state.account.transactions || {};
+  return state.date.list.filter((date) => !!transactions[date.id] && numeral(transactions[date.id]).value() > 0);
 }
 
 export const portfolioValue = (state) => {

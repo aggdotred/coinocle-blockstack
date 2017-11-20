@@ -7,6 +7,7 @@ import {ChartCanvas, Chart} from 'react-stockcharts';
 import {LineSeries} from 'react-stockcharts/lib/series';
 import {XAxis, YAxis} from 'react-stockcharts/lib/axes';
 import {fitWidth} from 'react-stockcharts/lib/helper';
+import { Line } from "react-chartjs-2";
 import {last, first, timeIntervalBarWidth} from 'react-stockcharts/lib/utils';
 import {
   CrossHairCursor,
@@ -42,7 +43,6 @@ class PriceChart extends React.Component {
   }
 
   render() {
-    console.log('rerendering the chart...');
     if (this.props.priceChartError === PRICE_CHART_ERROR_DATA_NA) {
       return (
           <h5 className="mt-5 text-center text-danger">At the moment there is not data available for
@@ -63,20 +63,20 @@ class PriceChart extends React.Component {
       xAccessor(last(data))
     ];
     console.log(data);
-    const periods = [[300, '5m'], [900, '15m'], [1800, '30m'], [7200, '2h'], [14400, '4h'], [86400, '1d']];
+    const periods = [[300, '24h'], [900, '72h'], [1800, '1wk'], [7200, '1mth'], [14400, '2mth'], [86400, '1yr']];
     const periodLinks = periods.map((p) => {
       return p[0] === this.state.period ? (
-              <span key={p[1]} className="mr-3"><strong>{p[1]}</strong></span>) : (
-              <a key={p[1]} className="mr-3" href="#"
+              <span key={p[1]} className="mr-3 period-link"><strong>{p[1]}</strong></span>) : (
+              <a key={p[1]} className="mr-3 period-link" href="#"
                  onClick={() => this.changePeriod(p[0])}>{p[1]}</a>
           )
     });
     return (
         <div>
-          <div className="text-right">
+          <div className="text-center historical-links">
             {periodLinks}
           </div>
-          <ChartCanvas width={width} height={400} ratio={ratio}
+          <ChartCanvas width={1000} height={400} ratio={ratio}
                        panEvent={false}
                        zoomEvent={false}
                        margin={{ left: 50, right: 50, top: 10, bottom: 30 }}

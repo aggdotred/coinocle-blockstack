@@ -4,6 +4,7 @@ import Portfolio from './Portfolio';
 import HomePage from './HomePage';
 import CoinChart from './CoinChart';
 import NewCoin from "./NewCoin";
+import AddTransaction from "./AddTransaction";
 import './App.css';
 import {
   Collapse,
@@ -57,7 +58,7 @@ class App extends React.Component {
   }
 
   render() {
-
+  
     const user = this.props.user;
 
     // Signout functionality
@@ -95,6 +96,7 @@ class App extends React.Component {
             <Route path="/chart/:coin" component={CoinChart}/>
             <Route exact path="/coin/new" component={NewCoin}/>
             <Route exact path="/chart" component={Chart}/>
+            <Route exact path="/transaction/new" component={AddTransaction}/>
           </main>
         </div>
     )

@@ -36,6 +36,7 @@ class Portfolio extends React.Component {
   }
 
   renderContent() {
+    
     const signInButton = (
         <a className="social-button" id="blockstack-connect" onClick={this.signin}>{buttons.signInButton}</a>
     )

@@ -1,9 +1,9 @@
 {
   "short_name": "Coinocle",
-  "name": "Blockstack Portfo",
+  "name": "Coinocle",
   "icons": [
     {
-      "src": "coinocle.png",
+      "src": "./coinocle.png",
       "sizes": "192x192",
       "type": "image/png"
     }

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 
 export default class WalletList extends React.Component {
+  
   render() {
     const holdings = this.props.holdings || {};
     const rows = this.props.list.map((row) => <WalletRow

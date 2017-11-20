@@ -70,7 +70,7 @@ class Chart extends React.Component {
         this.setState({ zec: res.data.ZEC.USD });
         this.setState({ xrp: res.data.XRP.USD });
         this.setState({ neo: res.data.NEO.USD });
-        this.setState({ miota: res.data.MIOTA.USD });
+        this.setState({ miota: res.data.IOTA.USD });
         this.setState({ xem: res.data.XEM.USD });
         this.setState({ lsk: res.data.LSK.USD });
         this.setState({ qtum: res.data.QTUM.USD });
@@ -105,6 +105,11 @@ class Chart extends React.Component {
   }
 
   renderContent() {
+    
+    const port = this.props.holdingsList;
+    const names = port.map(function(item) {
+      return item.name;
+    });
     const transactionData = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
@@ -136,7 +141,7 @@ class Chart extends React.Component {
     const bitcoin = parseFloat(this.props.holdings.bitcoin) * this.state.btc;
     const ethereum = parseFloat(this.props.holdings.ethereum) * this.state.eth;
     const bitcash = parseFloat(this.props.holdings["bitcoin-cash"]) * this.state.bcc;
-    const iota = parseFloat(this.props.holdings.iota) * this.state.miota;
+    const iota = parseFloat(this.props.holdings.iota) * this.state.iota;
     const litecoin = parseFloat(this.props.holdings.litecoin) * this.state.ltc;
     const etc = parseFloat(this.props.holdings["ethereum-classic"]) * this.state.etc;
     const dash = parseFloat(this.props.holdings.dash) * this.state.dash;
@@ -157,11 +162,11 @@ class Chart extends React.Component {
       bitcoin, ethereum, bitcash, iota, litecoin, etc, dash, xmr, zec, ripple, neo, nem, lisk, qtum, hshare, eos, omg, ada, usdt
     ]
     const newData = {
-      labels: this.props,
+      labels: names,
       datasets: [
         {
           data: portfolio,
-          backgroundColor: ["#F2A900", "#3C3C3D", "#88CBF5"],
+          backgroundColor: ["#F2A900", "#3C3C3D", "#88CBF5", 'rgba(75,192,192,0.4)'],
           hoverBackgroundColor: ["#00cc66", "#00cc66", "#00cc66"]
         }
       ]
@@ -226,7 +231,6 @@ class Chart extends React.Component {
   }
 
   render() {
-    console.log(this.props.holdingsList);
 
     return (
       <div>

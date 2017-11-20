@@ -4,7 +4,7 @@ import {coinPageInfo} from '../modules/message';
 import {Link} from 'react-router-dom';
 import {Form, FormGroup, Input, InputGroup, InputGroupAddon} from 'reactstrap';
 
-export default class CoinHoldingAdd extends React.Component {
+export default class TransactionFileAdd extends React.Component {
   static PropTypes = {}
 
   constructor(props) {
@@ -13,7 +13,7 @@ export default class CoinHoldingAdd extends React.Component {
   }
 
   startEdit() {
-    this.props.updateHoldingInput(this.props.value);
+    this.props.updateTransactionInput(this.props.value);
     this.setState({
       isEditing: true
     })
@@ -30,7 +30,7 @@ export default class CoinHoldingAdd extends React.Component {
       ...this.state,
       isEditing: false
     })
-    this.props.onSave(this.props.coin.id, value)
+    this.props.onSave(this.props.date, value)
   };
 
   cancel() {
@@ -41,7 +41,7 @@ export default class CoinHoldingAdd extends React.Component {
   };
 
   render() {
-    const coin = this.props.coin;
+    const date = this.props.date;
 
     const signinElem = (
         <div>
@@ -58,33 +58,30 @@ export default class CoinHoldingAdd extends React.Component {
 
     const editElem = (
         <div>
-          <Form className="addwalletform" onSubmit={() => {this.save(this.props.holdingInput)}}>
+          <Form className="addwalletform" onSubmit={() => {this.save(this.props.transactionInput)}}>
 
               <FormGroup>
                 <InputGroup className="wallet-input">
-                  <Input value={this.props.holdingInput}
-                         onChange={(e) => this.props.updateHoldingInput(e.target.value)}
-                         name="holdings" id="holdings"
+                  <Input value={this.props.transactionInput}
+                         onChange={(e) => this.props.updateTransactionInput(e.target.value)}
+                         name="transactions" id="transactions"
                          className="wallet-input"
                          type="number"
-                         placeholder="Coins owned"/>
+                         placeholder="Something here"/>
                 </InputGroup>
               </FormGroup>
-              <small className="text-muted">{coinPageInfo.holdings}</small>
+              <small className="text-muted">Something</small>
 
           </Form>
           <div>
-            <Link to={"/"}><button className="wallet-save" onClick={() => this.save(this.props.holdingInput)}>Save</button></Link>
-            <Link to={"/coin/new"}><button className="cancel">Cancel</button></Link>
+            <Link to={"/"}><button className="wallet-save" onClick={() => this.save(this.props.transactionInput)}>Save</button></Link>
+            <Link to={"/"}><button className="cancel">Cancel</button></Link>
           </div>
         </div>
     );
 
     const viewElem = (
         <div>
-          <h4>{this.props.value} {coin.symbol}
-            <small className="text-muted"><br/>{coinPageInfo.holdings}</small>
-          </h4>
           {editLinkElem}
         </div>
     );

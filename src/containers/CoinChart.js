@@ -4,12 +4,14 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import CoinHoldingBox from '../components/CoinHoldingBox';
+import { Line } from "react-chartjs-2";
 import {updateHoldings} from '../modules/account';
 import {coinPage, hourlyChanges} from '../modules/message';
 import {loadCoin, loadCoinChartData, clearChart, loadOrderBook} from '../modules/coin';
 import {updateHoldingInput} from '../modules/ui';
 import numeral from 'numeral';
-import CoinChartSection from '../components/CoinChartSection';
+import PriceChart from '../components/PriceChart';
+import ChartArea from '../components/ChartArea';
 import {formatMoney} from '../utils';
 class CoinChart extends React.Component {
   static PropTypes = {}
@@ -39,70 +41,40 @@ class CoinChart extends React.Component {
     const change_7d = numeral(coin['percent_change_7d']).value();
 
     return (
-        <Container>
-          <Row className="mt-3">
-            <Col>
-              <Link to="/">{coinPage.back}</Link>
-            </Col>
-          </Row>
-          <Row className="mt-3 mb-3">
-            <Col>
+          <div>
+            <h1>{coin.name}</h1>
 
-              <h2>{coin.name}</h2>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="6" sm="8" md="4">
-              <CoinHoldingBox
-                  coin={coin}
-                  value={amount}
-                  holdingInput={this.props.holdingInput}
-                  updateHoldingInput={this.props.updateHoldingInput}
-                  onSave={this.props.updateHoldings}
-                  user={this.props.user}
-                  signin={this.signin}
-              />
-            </Col>
-            <Col>
-              <h4>{formatMoney(currency, value_in_currency)}
-                <small className="text-muted"><br/>{coinPage.holdings}</small>
-              </h4>
-            </Col>
-          </Row>
-          <Row className="mt-4">
-            <Col>
-              <h5>
+            <h3>{formatMoney(currency, value_in_currency)}
+              <small className="text-muted"><br/>Portfolio Value</small>
+            </h3>
+            <h4>{this.props.value}</h4>
+            <div className="marquee">
+            <p id="ticker-span"><span className="ticker-span" className={change_1h < 0 ? "text-danger" : "text-success"}>Hourly Change: {change_1h}%</span>  <span className="ticker-span" className={change_24h < 0 ? "text-danger" : "text-success"}>Daily Change: {change_24h}%</span>  <span className="ticker-span" className={change_7d < 0 ? "text-danger" : "text-success"}>Weekly Change: {change_7d}%</span></p>
+            </div>
+
+          <div className="row coin-data">
+            <div className="col-md-4">
+              <h4>
                 {coinPage.price}<br/>
                 <small className="text-muted">{formatMoney(currency, price)}</small>
-              </h5>
-            </Col>
-            <Col>
-              <h5>
+              </h4>
+            </div>
+            <div className="col-md-4">
+              <h4>
                 {coinPage.marketCap}<br/>
                 <small className="text-muted">{market_cap} {currency}</small>
-              </h5>
-            </Col>
-            <Col>
-              <h5>
+              </h4>
+            </div>
+            <div className="col-md-4">
+              <h4>
                 {coinPage.volume}<br/>
                 <small className="text-muted">{volume} {currency}</small>
-              </h5>
-            </Col>
-            <Col>
-              <div className={change_1h < 0 ? "text-danger" : "text-success"}>
-                {hourlyChanges.one} {change_1h}%
-              </div>
-              <div className={change_24h < 0 ? "text-danger" : "text-success"}>
-                {hourlyChanges.twentyFour} {change_24h}%
-              </div>
-              <div className={change_7d < 0 ? "text-danger" : "text-success"}>
-                {hourlyChanges.sevenDays} {change_7d}%
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <CoinChartSection
+              </h4>
+            </div>
+
+          </div>
+
+              <ChartArea
                   coinChartData={this.props.coinChartData}
                   coin={this.props.coin}
                   loadCoinChartData={this.props.loadCoinChartData}
@@ -111,9 +83,8 @@ class CoinChart extends React.Component {
                   loadOrderBook={this.props.loadOrderBook}
                   priceChartError={this.props.priceChartError}
               />
-            </Col>
-          </Row>
-        </Container>
+
+        </div>
     )
   }
 }

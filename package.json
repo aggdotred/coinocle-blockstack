@@ -1,8 +1,8 @@
 {
-  "name": "blockshare.io",
+  "name": "coinocle",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://blockshare.io",
+  "homepage": "http://coinocle.com",
   "dependencies": {
     "autoprefixer": "7.1.2",
     "axios": "^0.16.2",
