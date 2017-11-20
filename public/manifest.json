@@ -3,7 +3,7 @@
   "name": "Coinocle",
   "icons": [
     {
-      "src": "./coinocle.png",
+      "src": "http://app.coinocle.com/favicon.ico",
       "sizes": "192x192",
       "type": "image/png"
     }

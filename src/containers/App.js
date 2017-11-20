@@ -58,7 +58,7 @@ class App extends React.Component {
   }
 
   render() {
-  
+
     const user = this.props.user;
 
     // Signout functionality
@@ -80,8 +80,8 @@ class App extends React.Component {
                   <li className="dropdown">
                     <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{image} <span className="caret"></span></a>
                     <ul className="dropdown-menu">
-                      <li className="droplink">Profile</li>
-                      <li className="droplink">Contact Us</li>
+                      <li className="droplink"><a href="http://coinocle.com">About</a></li>
+                      <li className="droplink"><a href="http://coinocle.com">Contact Us</a></li>
                       <li>{signoutButton}</li>
                     </ul>
                   </li>
