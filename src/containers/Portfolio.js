@@ -78,7 +78,13 @@ class Portfolio extends React.Component {
        return (
          <Container>
          <div>
-
+         <div className="row">
+          <div className="col-md-2">
+          <h6 className="text-muted">Select currency exchange</h6>
+         <CurrencySelector currency={this.props.currency}
+                                onChange={this.onCurrencyChange.bind(this)}/>
+           </div>
+         </div>
           <div className="container text-center">
             <h2>Dashboard</h2>
             <h4>Total Current Value</h4>
