@@ -1,6 +1,5 @@
 import React from 'react';
-// import PropTypes from "prop-types";
-import {last, first, timeIntervalBarWidth} from 'react-stockcharts/lib/utils';
+import {last, first} from 'react-stockcharts/lib/utils';
 import PropTypes from 'prop-types';
 import numeral from 'numeral';
 import {scaleLinear} from 'd3-scale';
@@ -9,7 +8,6 @@ import {AreaSeries} from 'react-stockcharts/lib/series';
 import {XAxis, YAxis} from 'react-stockcharts/lib/axes';
 import {fitWidth} from 'react-stockcharts/lib/helper';
 import {HoverTooltip} from 'react-stockcharts/lib/tooltip';
-import {OrderBookTable} from './OrderBookTable';
 
 class OrderBook extends React.Component {
   tooltipContent(ys) {
@@ -30,10 +28,6 @@ class OrderBook extends React.Component {
     const bids = this.props.data.bids;
     const nextBids = nextProps.data.bids;
 
-    const asks = this.props.data.asks;
-    const nextAsks = nextProps.data.asks;
-
-    // Not the best condition but good enough for now
     return (bids.length !== nextBids.length) ||
         (bids.length > 0 && nextBids.length > 0 && bids[0][0] !== nextBids[0][0]);
   }

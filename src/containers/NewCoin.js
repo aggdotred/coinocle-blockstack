@@ -1,24 +1,17 @@
 import React from 'react';
-import {Row, Col, Container, Button} from 'reactstrap';
+import {Container} from 'reactstrap';
 import TabsTwo from '../components/TabsTwo';
-import CurrencySelector from '../components/CurrencySelector';
-import CurrencySearch from '../components/CryptoCurrencySearch'; // Import Currency Search Bar for easier access.
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {changeCurrency, loadCoinList} from '../modules/coin';
-import axios from "axios";
 import {
-  wallets,
   holdingsList,
   portfolioValue,
   porfolioValueChange,
   signinSuccess,
   loadHoldings
 } from '../modules/account';
-import numeral from 'numeral';
-import { Link } from "react-router-dom";
-import {formatMoney} from '../utils';
-import {message,
+import {
         buttons
 } from '../modules/message';
 
@@ -39,25 +32,6 @@ class NewCoin extends React.Component {
     const signInButton = (
         <a className="social-button" id="blockstack-connect" onClick={this.signin}>{buttons.signInButton}</a>
     )
-
-    const currencyChange = (
-        <span className={this.props.porfolioValueChange > 0 ? 'text-success' : 'text-danger'}>
-          {formatMoney(this.props.currency, this.props.porfolioValueChange)}
-          {this.props.porfolioValueChange > 0 ? '↑' : '↓'}
-        </span>);
-    const currencyValue = (
-        <h1 className="total-wallet-value">{formatMoney(this.props.currency, this.props.portfolioValue)}<br/>
-          <small className="text-muted">{message.holdings}</small>
-        </h1>
-    )
-
-    const currencyChangeEl = this.props.user ?  (
-        <h4>
-          {currencyChange}<br/>
-          <small className="text-muted">Since yesterday</small>
-        </h4>
-    ): null;
-    const header = !!this.props.user ? currencyValue : signInButton
 
     switch(!!this.props.user) {
       case null:

@@ -1,8 +1,6 @@
 import React from 'react';
-import {Row, Col, Container, Button} from 'reactstrap';
-import Tabs from '../components/Tabs';
+import {Container} from 'reactstrap';
 import CurrencySelector from '../components/CurrencySelector';
-import CurrencySearch from '../components/CryptoCurrencySearch'; // Import Currency Search Bar for easier access.
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {changeCurrency, loadCoinList} from '../modules/coin';
@@ -13,7 +11,6 @@ import {
   signinSuccess,
   loadHoldings
 } from '../modules/account';
-import numeral from 'numeral';
 import WalletList from "../components/WalletList";
 import { Link } from "react-router-dom";
 import {formatMoney} from '../utils';

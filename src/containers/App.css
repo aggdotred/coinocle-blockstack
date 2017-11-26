@@ -14,6 +14,14 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
+.coming-soon {
+  color: #d9d9d9;
+}
+
 .nav>li>a:focus, .nav>li>a:hover, .nav>li>a:active, .dropdown, .open {
   background-color: #fff;
 }

@@ -1,8 +1,7 @@
 import React from 'react';
-import numeral from 'numeral';
 import {coinPageInfo} from '../modules/message';
 import {Link} from 'react-router-dom';
-import {Form, FormGroup, Input, InputGroup, InputGroupAddon} from 'reactstrap';
+import {Form, Input, InputGroup} from 'reactstrap';
 
 export default class CoinHoldingEdit extends React.Component {
   static PropTypes = {}
@@ -45,12 +44,12 @@ export default class CoinHoldingEdit extends React.Component {
 
     const signinElem = (
         <div>
-          <a onClick={this.props.signin} href="#">Sign in to change</a>
+          <a onClick={this.props.signin}>Sign in to change</a>
         </div>
     );
     const editLink = (
         <div>
-          <a onClick={this.startEdit.bind(this)} href="#">Change</a>
+          <a onClick={this.startEdit.bind(this)}>Change</a>
         </div>
     );
 
@@ -60,7 +59,7 @@ export default class CoinHoldingEdit extends React.Component {
         <div>
           <h3>{this.props.value}<br />
           <small>Total {coin.name} Owned</small></h3>
-          <h2></h2>
+          
           <h3>Enter new total number of {coin.name} owned</h3>
           <Form className="addwalletform" onSubmit={() => {this.save(this.props.holdingInput)}}>
 

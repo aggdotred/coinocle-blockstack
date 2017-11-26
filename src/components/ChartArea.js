@@ -1,10 +1,7 @@
 import React from 'react';
-import {TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, Button} from 'reactstrap';
-import classnames from 'classnames';
 import PriceChart from './PriceChart';
 import OrderBook from './OrderBook';
 import OrderBookTable from './OrderBookTable'
-import {orderBook} from '../modules/message';
 
 export default class ChartArea extends React.Component {
   constructor(props) {

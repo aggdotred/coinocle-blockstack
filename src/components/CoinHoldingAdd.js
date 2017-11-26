@@ -1,8 +1,7 @@
 import React from 'react';
-import numeral from 'numeral';
 import {coinPageInfo} from '../modules/message';
 import {Link} from 'react-router-dom';
-import {Form, FormGroup, Input, InputGroup, InputGroupAddon} from 'reactstrap';
+import {Form, FormGroup, Input, InputGroup} from 'reactstrap';
 
 export default class CoinHoldingAdd extends React.Component {
   static PropTypes = {}
@@ -45,12 +44,12 @@ export default class CoinHoldingAdd extends React.Component {
 
     const signinElem = (
         <div>
-          <a onClick={this.props.signin} href="#">Sign in to change</a>
+          <a onClick={this.props.signin}>Sign in to change</a>
         </div>
     );
     const editLink = (
         <div>
-          <a onClick={this.startEdit.bind(this)} href="#">Change</a>
+          <a onClick={this.startEdit.bind(this)}>Change</a>
         </div>
     );
 

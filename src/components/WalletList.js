@@ -1,14 +1,13 @@
 import React from 'react';
 import {Table} from 'reactstrap';
 import WalletRow from './WalletRow';
-import {Row, Col, Container, Button} from 'reactstrap';
-import {tableMessage} from '../modules/message';
+import {Container} from 'reactstrap';
 import AddWalletButton from "./AddWalletButton";
 import { Link } from "react-router-dom";
 
 
 export default class WalletList extends React.Component {
-  
+
   render() {
     const holdings = this.props.holdings || {};
     const rows = this.props.list.map((row) => <WalletRow
@@ -16,7 +15,6 @@ export default class WalletList extends React.Component {
         key={row.id}
         holdings={holdings[row.id]}
         coin={row}/>);
-    const data = this.props.holdings;
 
     return (
         <Container>

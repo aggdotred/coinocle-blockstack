@@ -1,15 +1,9 @@
 import React from 'react';
-import {Row, Col, Container} from 'reactstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import TransactionFileAdd from '../components/TransactionFileAdd';
 import {updateTransactions} from '../modules/account';
-import {coinPage, hourlyChanges} from '../modules/message';
-import {loadCoin, loadCoinChartData, clearChart, loadOrderBook} from '../modules/coin';
 import {updateTransactionInput} from '../modules/ui';
-import numeral from 'numeral';
-import {formatMoney} from '../utils';
 
 class AddTransaction extends React.Component {
   static PropTypes = {}
@@ -27,7 +21,7 @@ class AddTransaction extends React.Component {
 
     const props = this.props;
     const date = props.date;
-    const transactions = props.transactions;
+    // const transactions = props.transactions;
 
     // const currency = this.props.currency;
     // const price = coin['price_' + currency.toLowerCase()];

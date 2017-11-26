@@ -1,9 +1,6 @@
 import React from 'react';
-import {Table} from 'reactstrap';
 import CoinRowTwo from './CoinRowTwo';
-import {tableMessage} from '../modules/message';
-import { Link } from "react-router-dom";
-import {Row, Col, Container, Button} from 'reactstrap';
+import {Container} from 'reactstrap';
 
 
 export default class CoinListTwo extends React.Component {

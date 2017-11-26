@@ -1,22 +1,15 @@
 import React from 'react';
-import {Route, Link, withRouter} from 'react-router-dom';
+import {Route, withRouter} from 'react-router-dom';
 import Portfolio from './Portfolio';
-import HomePage from './HomePage';
 import CoinChart from './CoinChart';
 import NewCoin from "./NewCoin";
 import AddTransaction from "./AddTransaction";
 import './App.css';
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
-  Nav,
-  NavItem,
-  Container,
-  Button
+  Container
 } from 'reactstrap';
-import {message} from '../modules/message';
 import {signinSuccess, signout, loadHoldings, updateHoldings} from '../modules/account';
 import {loadCoinList} from '../modules/coin';
 import {buttons} from '../modules/message';
@@ -68,17 +61,17 @@ class App extends React.Component {
 
     // Load Blockstack Identity Image.
     const image = user ? (
-          <img className="circle" src={this.props.user.avatarUrl()} width="64" height="64" />
+          <img className="circle" src={this.props.user.avatarUrl()} alt="profile" width="64" height="64" />
       ) : null;
 
     return (
         <div className="App">
           <Navbar color="faded">
             <Container>
-              <NavbarBrand ><Link to={"/"}><img src={logo} alt="Coinocle logo" /></Link></NavbarBrand>
+              <NavbarBrand ><a href="/"><img src={logo} alt={"logo"} /></a></NavbarBrand>
                 <ul className="nav navbar-nav navbar-right">
                   <li className="dropdown">
-                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{image} <span className="caret"></span></a>
+                    <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{image} <span className="caret"></span></a>
                     <ul className="dropdown-menu">
                       <li className="droplink"><a href="http://coinocle.com">About</a></li>
                       <li className="droplink"><a href="http://coinocle.com">Contact Us</a></li>

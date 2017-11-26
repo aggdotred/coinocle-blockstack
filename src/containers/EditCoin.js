@@ -1,14 +1,10 @@
 import React from 'react';
-import {Row, Col, Container} from 'reactstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import CoinHoldingEdit from '../components/CoinHoldingEdit';
 import {updateHoldings} from '../modules/account';
-import {coinPage, hourlyChanges} from '../modules/message';
 import {loadCoin, loadCoinChartData, clearChart, loadOrderBook} from '../modules/coin';
 import {updateHoldingInput} from '../modules/ui';
-import numeral from 'numeral';
 import {formatMoney} from '../utils';
 
 class EditCoin extends React.Component {
@@ -32,13 +28,6 @@ class EditCoin extends React.Component {
     const currency = this.props.currency;
     const price = coin['price_' + currency.toLowerCase()];
     const value_in_currency = !!amount ? amount * price : 0;
-    const market_cap = numeral(coin['market_cap_' + currency.toLowerCase()]).format('0.0a');
-    const volume = numeral(coin['24h_volume_' + currency.toLowerCase()]).format('0.0a');
-    const change_1h = numeral(coin['percent_change_1h']).value();
-    const change_24h = numeral(coin['percent_change_24h']).value();
-    const change_7d = numeral(coin['percent_change_7d']).value();
-    const holdingElem = holdings && holdings > 0 ? (<span>{holdings} {coin.symbol}</span>) : (
-              <span>-</span>);
 
     return (
       <div className="addcoin">

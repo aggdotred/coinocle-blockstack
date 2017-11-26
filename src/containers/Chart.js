@@ -1,8 +1,5 @@
 import React from 'react';
-import {Row, Col, Container, Button} from 'reactstrap';
-import Tabs from '../components/Tabs';
-import CurrencySelector from '../components/CurrencySelector';
-import CurrencySearch from '../components/CryptoCurrencySearch'; // Import Currency Search Bar for easier access.
+import {Container} from 'reactstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import { Doughnut } from "react-chartjs-2";
@@ -16,11 +13,7 @@ import {
   signinSuccess,
   loadHoldings
 } from '../modules/account';
-import numeral from 'numeral';
-import WalletList from "../components/WalletList";
-import { Link } from "react-router-dom";
-import {formatMoney} from '../utils';
-import {message,
+import {
         buttons
 } from '../modules/message';
 
@@ -105,11 +98,7 @@ class Chart extends React.Component {
   }
 
   renderContent() {
-    
-    const port = this.props.holdingsList;
-    const names = port.map(function(item) {
-      return item.name;
-    });
+
     const transactionData = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
@@ -117,18 +106,18 @@ class Chart extends React.Component {
           label: 'Fees',
           fill: false,
           lineTension: 0.1,
-          backgroundColor: 'rgba(75,192,192,0.4)',
-          borderColor: 'rgba(75,192,192,1)',
+          backgroundColor: '#d9d9d9',
+          borderColor: '#d9d9d9',
           borderCapStyle: 'butt',
           borderDash: [],
           borderDashOffset: 0.0,
           borderJoinStyle: 'miter',
-          pointBorderColor: 'rgba(75,192,192,1)',
+          pointBorderColor: '#d9d9d9',
           pointBackgroundColor: '#fff',
           pointBorderWidth: 1,
           pointHoverRadius: 5,
-          pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-          pointHoverBorderColor: 'rgba(220,220,220,1)',
+          pointHoverBackgroundColor: '#d9d9d9',
+          pointHoverBorderColor: '#d9d9d9',
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
@@ -137,7 +126,87 @@ class Chart extends React.Component {
       ]
     }
 
-    const price = "";
+    const signInButton = (
+        <a className="social-button" id="blockstack-connect" onClick={this.signin}>{buttons.signInButton}</a>
+    )
+
+
+    switch(!!this.props.user) {
+      case null:
+      return;
+      case false:
+      return (
+        <div>
+            <div className="text-center welcome-text">
+              <h2>Welcome!</h2>
+              <h2>Log in with Blockstack.</h2>
+            </div>
+            <div className="login-box">
+        			{signInButton}
+    		    </div>
+          </div>
+      );
+      default:
+       return (
+         <div>
+         <div className="card-1 coming-soon col-md-6">
+         <h2 className="text-center">Recent Transactions</h2>
+         <h4 className="text-center">Coming Soon</h4>
+         <table className="table table-bordered table-striped table-hover">
+           <thead>
+           <tr className="coming-soon">
+             <td>Date</td>
+             <td>Buy/Sell</td>
+             <td>Coin</td>
+             <td>Amount</td>
+           </tr>
+           </thead>
+           <tbody>
+             <tr className="coming-soon">
+               <td>08/12/2017</td>
+               <td>Buy</td>
+               <td>Bitcoin</td>
+               <td>0.003</td>
+             </tr>
+             <tr className="coming-soon">
+               <td>08/30/2017</td>
+               <td>Buy</td>
+               <td>Ethereum</td>
+               <td>0.06</td>
+             </tr>
+             <tr className="coming-soon">
+               <td>09/05/2017</td>
+               <td>Sell</td>
+               <td>DASH</td>
+               <td>4.1</td>
+             </tr>
+             <tr className="coming-soon">
+               <td>09/20/2017</td>
+               <td>Buy</td>
+               <td>Ripple</td>
+               <td>200.52</td>
+             </tr>
+           </tbody>
+         </table>
+         </div>
+            <div className="col-md-6 card-1 coming-soon">
+              <h2 className="text-center">Fees Over Time</h2>
+              <h4 className="text-center">Coming Soon</h4>
+              <Line data={transactionData} />
+            </div>
+         </div>
+      );
+    }
+
+  }
+
+  render() {
+
+    const port = this.props.holdingsList;
+    const names = port.map(function(item) {
+      return item.name;
+    });
+
     const bitcoin = parseFloat(this.props.holdings.bitcoin) * this.state.btc;
     const ethereum = parseFloat(this.props.holdings.ethereum) * this.state.eth;
     const bitcash = parseFloat(this.props.holdings["bitcoin-cash"]) * this.state.bcc;
@@ -160,7 +229,7 @@ class Chart extends React.Component {
 
     const portfolio = [
       bitcoin, ethereum, bitcash, iota, litecoin, etc, dash, xmr, zec, ripple, neo, nem, lisk, qtum, hshare, eos, omg, ada, usdt
-    ]
+    ];
     const newData = {
       labels: names,
       datasets: [
@@ -172,109 +241,18 @@ class Chart extends React.Component {
       ]
     };
 
-
-    const signInButton = (
-        <a className="social-button" id="blockstack-connect" onClick={this.signin}>{buttons.signInButton}</a>
-    )
-
-    const currencyChange = (
-        <span className={this.props.porfolioValueChange > 0 ? 'text-success' : 'text-danger'}>
-          {formatMoney(this.props.currency, this.props.porfolioValueChange)}
-          {this.props.porfolioValueChange > 0 ? '↑' : '↓'}
-        </span>);
-    const currencyValue = (
-        <h1 className="total-wallet-value">{formatMoney(this.props.currency, this.props.portfolioValue)}<br/>
-          <small className="text-muted">{message.holdings}</small>
-        </h1>
-    )
-
-    const currencyChangeEl = this.props.user ?  (
-        <h4>
-          {currencyChange}<br/>
-          <small className="text-muted">Since yesterday</small>
-        </h4>
-    ): null;
-    const header = !!this.props.user ? currencyValue : signInButton
-
-    switch(!!this.props.user) {
-      case null:
-      return;
-      case false:
-      return (
-        <div>
-            <div className="text-center welcome-text">
-              <h2>Welcome!</h2>
-              <h2>Log in with Blockstack.</h2>
-            </div>
-            <div className="login-box">
-        			{signInButton}
-    		    </div>
-          </div>
-      );
-      default:
-       return (
-         <Container>
-          <div className="row">
-            <div className=" card-1 col-md-6">
-              <h2 className="text-center">Portolio Value</h2>
-              <Doughnut data={newData} />
-            </div>
-            <div className=" card-1 col-md-6">
-              <h2 className="text-center">Fees Over Time</h2>
-              <Line data={transactionData} />
-            </div>
-          </div>
-         </Container>
-      );
-    }
-
-  }
-
-  render() {
+    console.log(ripple);
 
     return (
-      <div>
       <Container>
-      <h2 className="text-center">Recent Transactions</h2>
-      <table className="table table-bordered table-striped table-hover">
-        <thead>
-        <tr>
-          <td>Date</td>
-          <td>Buy/Sell</td>
-          <td>Coin</td>
-          <td>Amount</td>
-        </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>08/12/2017</td>
-            <td>Buy</td>
-            <td>Bitcoin</td>
-            <td>0.003</td>
-          </tr>
-          <tr>
-            <td>08/30/2017</td>
-            <td>Buy</td>
-            <td>Ethereum</td>
-            <td>0.06</td>
-          </tr>
-          <tr>
-            <td>09/05/2017</td>
-            <td>Sell</td>
-            <td>DASH</td>
-            <td>4.1</td>
-          </tr>
-          <tr>
-            <td>09/20/2017</td>
-            <td>Buy</td>
-            <td>Ripple</td>
-            <td>200.52</td>
-          </tr>
-        </tbody>
-      </table>
-      </Container>
+        <div className="charts-card col-md-12">
+         <h2 className="text-center">Portolio Value</h2>
+         <Doughnut data={newData} />
+        </div>
+      <div className="row">
         {this.renderContent()}
       </div>
+      </Container>
     );
   }
 }

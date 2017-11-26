@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from "prop-types";
 import {scaleTime} from 'd3-scale';
 import {timeFormat} from 'd3-time-format';
 import {format} from 'd3-format';
@@ -7,8 +6,7 @@ import {ChartCanvas, Chart} from 'react-stockcharts';
 import {LineSeries} from 'react-stockcharts/lib/series';
 import {XAxis, YAxis} from 'react-stockcharts/lib/axes';
 import {fitWidth} from 'react-stockcharts/lib/helper';
-import { Line } from "react-chartjs-2";
-import {last, first, timeIntervalBarWidth} from 'react-stockcharts/lib/utils';
+import {last, first} from 'react-stockcharts/lib/utils';
 import {
   CrossHairCursor,
   MouseCoordinateX,
@@ -49,7 +47,7 @@ class PriceChart extends React.Component {
             this coin.</h5>
       )
     }
-    const { width, ratio, data } = this.props;
+    const {ratio, data } = this.props;
 
     const xAccessor = (d) => {
 
@@ -67,7 +65,7 @@ class PriceChart extends React.Component {
     const periodLinks = periods.map((p) => {
       return p[0] === this.state.period ? (
               <span key={p[1]} className="mr-3 period-link"><strong>{p[1]}</strong></span>) : (
-              <a key={p[1]} className="mr-3 period-link" href="#"
+              <a key={p[1]} className="mr-3 period-link"
                  onClick={() => this.changePeriod(p[0])}>{p[1]}</a>
           )
     });
